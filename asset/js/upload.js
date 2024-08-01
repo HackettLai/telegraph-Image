@@ -31,13 +31,13 @@ $smfile.fileinput({
     },
     browseClass: "btn btn-success",
     // msgPlaceholder: "选择文件",
-    browseLabel: "选择图片或视频",
+    browseLabel: "Select Picture or Video",
     browseIcon: "<i class=\"fas fa-images\"></i> ",
     removeClass: "btn btn-danger",
     // removeLabel: "清除",
     uploadClass: "btn btn-info",
     // uploadLabel: "上传",
-    dropZoneTitle: "拖拽文件到这里<br>或将屏幕截图复制并粘贴到此处<br>支持多文件同时上传…",
+    dropZoneTitle: "Drag and drop files here<br>Or copy and paste the screenshot here<br>Support multiple files uploading at the same time...",
     //showPreview: false
 })
 
@@ -109,19 +109,19 @@ document.addEventListener('paste', function (event) {
 function uploadBlobFile(images) {
     let form = $("#file");
     swal({
-        title: "提醒",
-        text: "是否添加粘贴的图片?",
+        title: "Remark",
+        text: "Add a pasted image?",
         icon: "warning",
         dangerMode: true,
         animation: "pop",
         buttons: {
             cancel: {
-                text: "取消",
+                text: "Cancel",
                 visible: true,
                 closeModal: true,
             },
             confirm: {
-                text: "确定",
+                text: "Confirm",
                 value: true,
                 visible: true,
                 closeModal: true

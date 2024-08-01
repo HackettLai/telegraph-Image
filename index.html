@@ -1,33 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+      name="viewport"
+    />
     <title>Upload</title>
     <!-- Bootstrap CSS -->
-    <link href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/twitter-bootstrap/5.2.3/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/asset/css/notifyme.css" rel="stylesheet">
-    <link href="/asset/css/style.css" rel="stylesheet">
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-JVKEXR5XSG"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() { dataLayer.push(arguments); }
-            gtag('js', new Date());
-    
-            gtag('config', 'G-JVKEXR5XSG');
-        </script>
+    <link
+      href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/twitter-bootstrap/5.2.3/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="/asset/css/notifyme.css" rel="stylesheet" />
+    <link href="/asset/css/style.css" rel="stylesheet" />
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-JVKEXR5XSG"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-JVKEXR5XSG");
+    </script>
     <!-- bootstrap-fileinput CSS -->
-    <link href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/bootstrap-fileinput/5.5.2/css/fileinput.min.css" rel="stylesheet">
-    <link href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link
+      href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/bootstrap-fileinput/5.5.2/css/fileinput.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
 
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <body>
+    <!-- <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,114 +71,217 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav> -->
     <div class="container kv-main">
-        <div class="page-header">
-            <h1>图片或视频上传</h1>&nbsp;每个文件最大&nbsp;5&nbsp;MB。每个请求最多&nbsp;100&nbsp;个文件。
-            本站已托管&nbsp;<span class="total" id="total"></span>&nbsp;张图片;
-            你访问本站的IP是：<span class="total" id="ipinfo"></span>&nbsp;
-
+      <div class="page-header">
+        <h1>Image or video upload</h1>
+        &nbsp;Maximum&nbsp;5&nbsp;MB per file. Up to&nbsp;100&nbsp;documents per request。
+        &nbsp;<span class="total" id="total"></span>&nbsp;is being hosted on this site.
+        Your IP address is:<span class="total" id="ipinfo"></span>&nbsp;
+      </div>
+      <form enctype="multipart/form-data">
+        <div class="form-group" style="max-height: 2000px">
+          <input
+            id="file"
+            type="file"
+            multiple
+            class="file"
+            data-overwrite-initial="false"
+            data-min-file-count="1"
+            name="file"
+            accept="image/*, video/*"
+          />
         </div>
-        <form enctype="multipart/form-data">
-            <div class="form-group" style="max-height: 2000px;">
-                <input id="file" type="file" multiple class="file" data-overwrite-initial="false"
-                    data-min-file-count="1" name="file" accept="image/*, video/*">
-            </div>
-        </form>
-        <form id="upload_option" enctype="multipart/form-data">
-        </form>
-        <div id="showurl" style="display: none; margin-top: 5px;">
+      </form>
+      <form id="upload_option" enctype="multipart/form-data"></form>
+      <div id="showurl" style="display: none; margin-top: 5px">
+        <button id="copyAllButton" class="btn btn-primary copyAllButton">
+          One-click copy
+        </button>
+        <ul class="nav nav-tabs" id="navTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link active"
+              id="imagedetail-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#imagedetail-panel"
+              type="button"
+              role="tab"
+              aria-controls="home-tab-pane"
+              aria-selected="true"
+              onclick="updateTab('imagedetail')"
+            >
+              URL
+            </button>
+          </li>
 
-            <button id="copyAllButton" class="btn btn-primary copyAllButton">一键复制</button>
-            <ul class="nav nav-tabs" id="navTab" role="tablist">
-
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="imagedetail-tab" data-bs-toggle="tab"
-                        data-bs-target="#imagedetail-panel" type="button" role="tab" aria-controls="home-tab-pane"
-                        aria-selected="true" onclick="updateTab('imagedetail')">URL</button>
-                </li>
-
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="htmlcode-tab" data-bs-toggle="tab" data-bs-target="#htmlcode-panel"
-                        type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false"
-                        onclick="updateTab('htmlcode')">HTML</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="bbcode-tab" data-bs-toggle="tab" data-bs-target="#bbcode-panel"
-                        type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false"
-                        onclick="updateTab('bbcode')">BBCode</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="markdown-tab" data-bs-toggle="tab" data-bs-target="#markdown-panel"
-                        type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false"
-                        onclick="updateTab('markdown')">Markdown</button>
-                </li>
-            </ul>
-            <div id="navTabContent" class="tab-content" style="border:none;">
-                <div class="tab-pane fade show active" id="imagedetail-panel" role="tabpanel"
-                    aria-labelledby="imagedetail-tab">
-                    <fieldset>
-                        <table class="table table-bordered">
-                            <tbody id="imagedetail"></tbody>
-                        </table>
-                    </fieldset>
-                </div>
-                <div class="tab-pane fade" id="htmlcode-panel" role="tabpanel" aria-labelledby="htmlcode-tab">
-                    <fieldset>
-                        <table class="table table-bordered">
-                            <tbody id="htmlcode"></tbody>
-                        </table>
-                    </fieldset>
-                </div>
-                <div class="tab-pane fade" id="bbcode-panel" role="tabpanel" aria-labelledby="bbcode-tab">
-                    <fieldset>
-                        <table class="table table-bordered">
-                            <tbody id="bbcode"></tbody>
-                        </table>
-                    </fieldset>
-                </div>
-                <div class="tab-pane fade" id="markdown-panel" role="tabpanel" aria-labelledby="markdown-tab">
-                    <fieldset>
-                        <table class="table table-bordered">
-                            <tbody id="markdown"></tbody>
-                        </table>
-                    </fieldset>
-                </div>
-            </div>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="htmlcode-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#htmlcode-panel"
+              type="button"
+              role="tab"
+              aria-controls="profile-tab-pane"
+              aria-selected="false"
+              onclick="updateTab('htmlcode')"
+            >
+              HTML
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="bbcode-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#bbcode-panel"
+              type="button"
+              role="tab"
+              aria-controls="contact-tab-pane"
+              aria-selected="false"
+              onclick="updateTab('bbcode')"
+            >
+              BBCode
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="markdown-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#markdown-panel"
+              type="button"
+              role="tab"
+              aria-controls="disabled-tab-pane"
+              aria-selected="false"
+              onclick="updateTab('markdown')"
+            >
+              Markdown
+            </button>
+          </li>
+        </ul>
+        <div id="navTabContent" class="tab-content" style="border: none">
+          <div
+            class="tab-pane fade show active"
+            id="imagedetail-panel"
+            role="tabpanel"
+            aria-labelledby="imagedetail-tab"
+          >
+            <fieldset>
+              <table class="table table-bordered">
+                <tbody id="imagedetail"></tbody>
+              </table>
+            </fieldset>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="htmlcode-panel"
+            role="tabpanel"
+            aria-labelledby="htmlcode-tab"
+          >
+            <fieldset>
+              <table class="table table-bordered">
+                <tbody id="htmlcode"></tbody>
+              </table>
+            </fieldset>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="bbcode-panel"
+            role="tabpanel"
+            aria-labelledby="bbcode-tab"
+          >
+            <fieldset>
+              <table class="table table-bordered">
+                <tbody id="bbcode"></tbody>
+              </table>
+            </fieldset>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="markdown-panel"
+            role="tabpanel"
+            aria-labelledby="markdown-tab"
+          >
+            <fieldset>
+              <table class="table table-bordered">
+                <tbody id="markdown"></tbody>
+              </table>
+            </fieldset>
+          </div>
         </div>
-        <div class="page-footer"></div>
-
+      </div>
+      <div class="page-footer"></div>
     </div>
 
+    <footer>
+        <p id="version">Built Version 1.1.0</p>
+        <img class="footer-image" src="asset/image/footer-logo.png" />
+        <p><a href="https://tool.hackettlai.com" target="blank">Hackett.Lai</a> @ <span id="thisYear"
+                class="footer"></span>
+        </p>
 
-    <footer class="footer">
-        <div class="container text-center">
-            <p class="text-muted">Copyright Ⓒ 2023 All rights reserved. 请勿上传违反中国法律的图片，违者后果自负。
-                本程序基于Telegraph，开源于GitHub <a href="https://github.com/x-dr/telegraph-Image"
-                    target="_blank">telegraph-Image</a></p>
-        </div>
     </footer>
     <div id="lightbox-overlay" class="lightbox-overlay">
-        <img id="lightbox-image" class="lightbox-image" src="">
+      <img id="lightbox-image" class="lightbox-image" src="" />
+    </div>
+     <!-- Changes Log -->
+     <div id="modal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <h2>Changes Log</h2>
+            <table class="modal-table">
+                <tr>
+                    <td>v1.1.0</td>
+                    <td>
+                        <p>2024/08/01</p>
+                        <ol>
+                            <li>First launch</li>
+                        </ol>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
 
     <script id="image-template" type="text/x-handlebars-template">
-        <tr>
-            <td class="image-code-cover">
-                <img class="lazy" onclick="showImage(this)" onload="DrawImage(this, 100, 100)" src="{{url}}">
-            </td>
-            <td>
-                <!-- <div class="dlinput_header">URL</div> -->
-                <div class="dlinput_container">
-                    <input class="cpurl form-control" type="text" onclick="this.select();" value="{{code}}">
-                    <div style="margin-top: 5px;"></div>
-                    <input class="form-control" type="text" onclick="this.select();" value="{{wp}}">
-                    <div style="margin-top: 5px;"></div>
-                    <input class="form-control" type="text" onclick="this.select();" value="{{raw}}">
-                </div>
-            </td>
-            <!-- <td style="width:260px;" class="advert"></td> -->
-        </tr>
+      <tr>
+        <td class="image-code-cover">
+          <img
+            class="lazy"
+            onclick="showImage(this)"
+            onload="DrawImage(this, 100, 100)"
+            src="{{url}}"
+          />
+        </td>
+        <td>
+          <!-- <div class="dlinput_header">URL</div> -->
+          <div class="dlinput_container">
+            <input
+              class="cpurl form-control"
+              type="text"
+              onclick="this.select();"
+              value="{{code}}"
+            />
+            <div style="margin-top: 5px;"></div>
+            <input
+              class="form-control"
+              type="text"
+              onclick="this.select();"
+              value="{{wp}}"
+            />
+            <div style="margin-top: 5px;"></div>
+            <input
+              class="form-control"
+              type="text"
+              onclick="this.select();"
+              value="{{raw}}"
+            />
+          </div>
+        </td>
+        <!-- <td style="width:260px;" class="advert"></td> -->
+      </tr>
     </script>
     <!-- jQuery -->
     <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
@@ -186,9 +307,10 @@
     <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
 
     <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
+/<!-- scripts -->
 
-    <script src="./asset/js/upload.js"></script>
-    
-</body>
-
+<script src="./asset/js/upload.js"></script>
+<script src='./functions/date.js'></script>
+<script type="text/javascript" src="./asset/js/changelog.js"></script>
+  </body>
 </html>
