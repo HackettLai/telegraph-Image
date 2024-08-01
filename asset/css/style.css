@@ -66,10 +66,10 @@ footer a {
   }
 
   /* Modal CSS */
-.modal {
+.logModal {
     display: none; /* Hidden by default */
     position: fixed;
-    z-index: 1000;
+    /* z-index: 1000; */
     left: 0;
     top: 0;
     width: 100%;
@@ -80,13 +80,13 @@ footer a {
     backdrop-filter: blur(5px);
   }
   
-  .modal-table {
+  .logModal-table {
     border-collapse: collapse;
   }
-  .modal-content h2{
+  .logModal-content h2{
     color: white;
   }
-  .modal-content {
+  .logModal-content {
     background-color: hsla(0, 0%, 0%, 0.5); /* fallback for older browsers */
     margin: 15% auto;
     padding: 20px;
@@ -95,24 +95,24 @@ footer a {
     max-width: 70vw;
     line-height: 1.5;
   }
-  .modal-table tr {
+  .logModal-table tr {
     vertical-align: top;
     color: white;
   }
-  .modal-table tr:not(:last-child) {
+  .logModal-table tr:not(:last-child) {
     border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
   }
-  .modal-table td {
+  .logModal-table td {
     padding: 20px 0px;
   }
-  .modal-table td:not(:first-child) {
+  .logModal-table td:not(:first-child) {
     padding-left: 10px;
   }
-  .modal-table td:not(:first-child) {
+  .logModal-table td:not(:first-child) {
     padding-left: 10px;
   }
-  .modal-table ol,
-  .modal-table p {
+  .logModal-table ol,
+  .logModal-table p {
     margin: 0;
   }
   

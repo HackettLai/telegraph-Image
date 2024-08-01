@@ -3,7 +3,7 @@
 var versionParagraph = document.getElementById("version");
 
 // Get the modal
-var modal = document.getElementById("modal");
+var modal = document.getElementById("logModal");
 
 // When the user clicks on the paragraph, open the modal
 versionParagraph.onclick = function() {
