@@ -1562,10 +1562,10 @@ h1 {
   }
 
   .footer {
-    font-weight: 100;
+    /* font-weight: 100;
     font-size: 15px;
     text-align: center;
-    padding-bottom: 0;
+    padding-bottom: 0; */
   }
 
   .advert_foot p {
