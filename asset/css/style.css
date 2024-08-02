@@ -1608,7 +1608,7 @@ h1 {
 
   .image-code-cover,
   .image-code-cover img {
-    width: 350px;
+    width: 170px!important;
     height: auto;
   }
 }
