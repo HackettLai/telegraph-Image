@@ -1679,3 +1679,9 @@ body {
 .copyAllButton {
   margin-bottom: 5px;
 }
+
+
+
+.dlinput_container > *:not(:first-child) {
+  display: none;
+}
