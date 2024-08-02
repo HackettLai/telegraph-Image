@@ -420,11 +420,11 @@ var clipboard = new ClipboardJS("#copyAllButton", {
 
 // 复制成功后的提示
 clipboard.on("success", function (e) {
-  swal("复制成功", "", "success");
+  swal("Copy Success", "", "success");
 });
 
 // 复制失败后的提示
 clipboard.on("error", function (e) {
   console.log(e);
-  swal("复制失败", "", "error");
+  swal("Copy Failed", "", "error");
 });
