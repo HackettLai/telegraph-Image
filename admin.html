@@ -54,7 +54,7 @@
                     <el-table-column fixed label="preview" prop="preview" v-if="showPreviewColumn" width="300">
                         <template v-slot="{ row, column, $index }">
                             <div class="demo-image__preview">
-                                <el-image style="width: 100px; height: 100px" :src="row.url" :zoom-rate="1.2"
+                                <el-image style="width: 276px; height: auto;" :src="row.url" :zoom-rate="1.2"
                                     preview-teleported :preview-src-list="urlList" :initial-index="$index"
                                     :hide-on-click-modal="true" alt="row.url" fit="cover" lazy />
                             </div>
